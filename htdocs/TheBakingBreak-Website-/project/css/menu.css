@@ -1,0 +1,107 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Body Styling */
+body {
+    overflow: hidden; /* Prevent body scrolling */
+}
+
+/* Sidebar Container */
+.container {
+    position: absolute;
+    left: -250px; /* Initially hidden */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #161616;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Sidebar Header */
+.container .head {
+    color: #fbfdce;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 30px;
+    text-transform: uppercase;
+    background: linear-gradient(30deg, #df0155, #ed4901);
+    text-align: center;
+}
+
+/* Menu Items */
+ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ol li {
+    width: 100%;
+}
+
+ol li a {
+    display: block;
+    padding: 15px;
+    color: #fbfdce;
+    font-size: 20px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+ol li a i {
+    padding-right: 10px;
+}
+
+/* Hover Effect on Menu Items */
+ol li a:hover {
+    background: #030303;
+    color: #00eaff;
+}
+
+/* Mobile Menu Button */
+input[type="checkbox"] {
+    display: none; /* Hide checkbox */
+}
+
+/* Bars Icon (Mobile Menu Button) */
+#bars {
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Sidebar Slide-in Effect */
+#check:checked ~ .container {
+    transform: translateX(250px); /* Slide-in from left */
+}
+
+/* Close Icon */
+#check:checked ~ .container #bars {
+    display: none;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    /* Ensure the container hides initially on mobile */
+    .container {
+        transform: translateX(-250px);
+    }
+
+    /* Show the menu button on mobile */
+    #bars {
+        display: block;
+    }
+
+    /* Sidebar items on mobile */
+    ol li a {
+        font-size: 18px;
+        padding: 12px;
+    }
+}
