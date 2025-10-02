@@ -363,3 +363,13 @@
 [Thu Oct 02 19:07:01.118479 2025] [php:error] [pid 10140:tid 1932] [client ::1:61515] script 'D:/PROGRAMMING LANGUAGES/XAMPP/htdocs/TheBakingBreak-Website-/project/admin-dashboard.php' not found or unable to stat
 [Thu Oct 02 19:08:13.767001 2025] [php:error] [pid 10140:tid 1928] [client ::1:56438] script 'D:/PROGRAMMING LANGUAGES/XAMPP/htdocs/TheBakingBreak-Website-/project/admin/login-form.php' not found or unable to stat
 [Thu Oct 02 19:08:38.955328 2025] [php:error] [pid 10140:tid 1932] [client ::1:49741] script 'D:/PROGRAMMING LANGUAGES/XAMPP/htdocs/TheBakingBreak-Website-/project/admin/login-form.php' not found or unable to stat
+[Thu Oct 02 20:31:59.564614 2025] [ssl:warn] [pid 13004:tid 448] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Oct 02 20:31:59.632266 2025] [core:warn] [pid 13004:tid 448] AH00098: pid file D:/PROGRAMMING LANGUAGES/XAMPP/apache/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Thu Oct 02 20:31:59.634331 2025] [ssl:warn] [pid 13004:tid 448] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Oct 02 20:31:59.669591 2025] [mpm_winnt:notice] [pid 13004:tid 448] AH00455: Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12 configured -- resuming normal operations
+[Thu Oct 02 20:31:59.669591 2025] [mpm_winnt:notice] [pid 13004:tid 448] AH00456: Apache Lounge VS17 Server built: Oct 18 2023 13:03:18
+[Thu Oct 02 20:31:59.669591 2025] [core:notice] [pid 13004:tid 448] AH00094: Command line: 'd:\\programming languages\\xampp\\apache\\bin\\httpd.exe -d D:/PROGRAMMING LANGUAGES/XAMPP/apache'
+[Thu Oct 02 20:31:59.675948 2025] [mpm_winnt:notice] [pid 13004:tid 448] AH00418: Parent: Created child process 15492
+[Thu Oct 02 20:32:00.287593 2025] [ssl:warn] [pid 15492:tid 464] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Oct 02 20:32:00.367122 2025] [ssl:warn] [pid 15492:tid 464] AH01909: www.example.com:443:0 server certificate does NOT include an ID which matches the server name
+[Thu Oct 02 20:32:00.398559 2025] [mpm_winnt:notice] [pid 15492:tid 464] AH00354: Child: Starting 150 worker threads.
