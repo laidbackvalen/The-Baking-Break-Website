@@ -1,10 +1,10 @@
 <?php
 session_start();
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
-    header("Location: login-form.php");
+    header("Location: ../login-form.php");
     exit;
 }
-include 'connect_user.php';
+include '../connect_user.php';
 ?>
 
 <!DOCTYPE html>
