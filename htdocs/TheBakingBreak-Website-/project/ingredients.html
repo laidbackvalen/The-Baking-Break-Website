@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredients - The Baking Break</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff8f5;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #c658aa;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .logo {
+            margin: auto;
+        }
+
+        header img {
+           /* width: 60px;*/
+            vertical-align: middle;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Page Title */
+        .title {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: rgb(252, 36, 196);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Ingredient Categories */
+        .categories {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .categories span {
+            display: inline-block;
+            background-color: #ffe6e6;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        /* Ingredient List */
+        .ingredient-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 20px;
+        }
+
+        .ingredient-card {
+            background-color: white;
+            width: 200px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .ingredient-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .ingredient-card h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+
+        .ingredient-card p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta button {
+            padding: 10px 15px;
+            background-color: rgb(252, 36, 196);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgb(252, 36, 196);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo" style="margin: right 10px; ;">
+                        <a
+                            href="https://www.google.com/search?q=the+baking+break&oq=&aqs=chrome.0.35i39i362l8.360970j0j7&sourceid=chrome&ie=UTF-8"><img
+                                src="image/2D-PNG.png" alt="The Baking Break" width="150px" height="120px"></a>
+                    </div>
+        <h1>The Baking Break</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#ingredient">Ingredients</a>
+            <a href="recipes.html">Recipes</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Title -->
+    <div class="title">
+        <h2>Ingredients for Your Baking Needs</h2>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search ingredients...">
+        <button>Search</button>
+    </div>
+
+    <!-- Ingredient Categories -->
+    <div class="categories">
+        <span>Flours</span>
+        <span>Sugars</span>
+        <span>Chocolates</span>
+        <span>Dairy</span>
+    </div>
+
+    <!-- Ingredient List -->
+    <div class="ingredient-list" id="ingredient">
+        <div class="ingredient-card">
+            <img src="image/flour.jpeg" alt="Flour">
+            <h3>All-purpose Flour</h3>
+            <p>Perfect for cakes, cookies, and bread.</p>
+        </div>
+
+        <div class="ingredient-card">
+            <img src="image/castersugar.jpeg" alt="Sugar">
+            <h3>Caster Sugar</h3>
+            <p>Dissolves quickly, ideal for baking.</p>
+        </div>
+
+        <div class="ingredient-card">
+            <img src="image/darkchocolate.jpeg" alt="Chocolate">
+            <h3>Dark Chocolate</h3>
+            <p>Rich flavor for brownies and ganache.</p>
+        </div>
+        <div class="ingredient-card">
+        <img src="image/almonds.jpg" alt="Almonds">
+        <h3>Almonds</h3>
+        <p>Great for toppings or baking crunchy treats.</p>
+    </div>
+    </div>
+    </div>
+    <div class="ingredient-list">
+    <!-- Flours -->
+    <div class="ingredient-card">
+        <img src="image/wholewheatflour.jpg" alt="Whole Wheat Flour">
+        <h3>Whole Wheat Flour</h3>
+        <p>Healthier option with extra fiber.</p>
+    </div>
+
+    <div class="ingredient-card">
+        <img src="image/cakeflour.jpg" alt="Cake Flour">
+        <h3>Cake Flour</h3>
+        <p>Soft, fine flour for light and fluffy cakes.</p>
+    </div>
+    <div class="ingredient-card">
+        <img src="image/activedryyeast.jpg" alt="Yeast">
+        <h3>Active Dry Yeast</h3>
+        <p>Perfect for breads and pizza doughs.</p>
+    </div>
+
+    <div class="ingredient-card">
+        <img src="image/brownsugar.jpg" alt="Brown Sugar">
+        <h3>Brown Sugar</h3>
+        <p>Gives a rich, caramel flavor to desserts.</p>
+    </div>
+
+    <!-- Sugars -->
+    
+
+    <div class="ingredient-card">
+        <img src="image/powderedsugar.jpg" alt="Powdered Sugar">
+        <h3>Powdered Sugar</h3>
+        <p>Perfect for frostings and dusting on desserts.</p>
+    </div>
+    <div class="ingredient-card">
+        <img src="image/walnuts.jpg" alt="Walnuts">
+        <h3>Walnuts</h3>
+        <p>Nutty flavor, ideal for brownies and cookies.</p>
+    </div>
+
+    <div class="ingredient-card">
+        <img src="image/milkchocolate.jpg" alt="Milk Chocolate">
+        <h3>Milk Chocolate</h3>
+        <p>Sweet and creamy, great for toppings.</p>
+    </div>
+
+    <div class="ingredient-card">
+        <img src="image/whitechocolate.jpg" alt="White Chocolate">
+        <h3>White Chocolate</h3>
+        <p>Sweet and smooth for decorative drizzles.</p>
+    </div>
+
+    <!-- Chocolates -->
+    
+
+    <!-- Dairy -->
+    <div class="ingredient-card">
+        <img src="image/unsaltedbutter.jpg" alt="Butter">
+        <h3>Unsalted Butter</h3>
+        <p>Rich flavor and perfect for baking recipes.</p>
+    </div>
+
+    <div class="ingredient-card">
+        <img src="image/heavycream.jpg" alt="Heavy Cream">
+        <h3>Heavy Cream</h3>
+        <p>Used for whipped cream and creamy desserts.</p>
+    </div>
+
+    <div class="ingredient-card">
+        <img src="image/wholemilk.jpg" alt="Milk">
+        <h3>Whole Milk</h3>
+        <p>Essential liquid for cakes, breads, and puddings.</p>
+    </div>
+    <div class="ingredient-card">
+        <img src="image/bakingpowder.jpg" alt="Baking Powder">
+        <h3>Baking Powder</h3>
+        <p>Helps baked goods rise and become fluffy.</p>
+    </div>
+
+</div>
+
+
+    <!-- CTA Section -->
+    <div class="cta">
+        <button>Get Started</button>
+        <button>Recipe Suggestions</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Contact us: hello@thebakingbreak.com | +91 8605886969</p>
+        <p>Follow us on Instagram | Facebook | Pinterest</p>
+    </footer>
+
+</body>
+</html>

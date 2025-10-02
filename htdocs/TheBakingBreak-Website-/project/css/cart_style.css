@@ -1,28 +1,39 @@
-body{
+body {
     margin: 0;
     font-family: Poppins;
+    background-color: #eae9e3;
+    padding-bottom: 50px;
 }
-.container{
+
+.container {
     width: 900px;
     margin: auto;
     max-width: 90vw;
     text-align: center;
     padding-top: 10px;
-    transition: transform .5s;
+    transition: transform 0.5s;
 }
-svg{
+
+svg {
     width: 30px;
 }
-header{
+
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
 }
-.icon-cart{
+
+h1 {
+    font-family: cursive;
+}
+
+.icon-cart {
     position: relative;
 }
-.icon-cart span{
+
+.icon-cart span {
     position: absolute;
     background-color: red;
     width: 30px;
@@ -35,43 +46,72 @@ header{
     top: 50%;
     right: -20px;
 }
-.title{
+
+.title {
     font-size: xx-large;
     font-family: cursive;
 }
-.listProduct .item img{
+
+.listProduct .item img {
     width: 80%;
+    height: 55%;
     /* filter: drop-shadow(0 50px 20px #0009); */
 }
-.listProduct{
+
+.listProduct {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
 }
-.listProduct .item{
-    background-color: #EEEEE6;
+
+.listProduct .item {
+    background-color: white;
     padding: 20px;
     border-radius: 20px;
 }
+
 .listProduct .item h2{
-    font-weight: 500;
-    font-size: large;
+    /* font-weight: 500;
+    font-size: large; */
+    margin: 4px 0;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-bottom: 15px;
+    margin-top: 10px;
 }
-.listProduct .item .price{
-    letter-spacing: 7px;
-    font-size: small;
+
+.listProduct .item .price {
+    /* letter-spacing: 7px;
+    font-size: small; */
+    color: #48a809;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
 }
-.listProduct .item button{
-    background-color: hsl(124, 73%, 43%);
+
+.listProduct .item button {
+    /* background-color: hsl(124, 73%, 43%);
     color: #eee;
     border: none;
     padding: 5px 10px;
     margin-top: 10px;
-    border-radius: 20px;
+    border-radius: 20px; */
+    margin-top: 8px;
+            background-color: #529a82;
+            font-size: 16px;
+            border-radius: 15px;
+            border: none;
+            color: aliceblue;
+            padding: 8px;
+            width: 180px;
+            cursor: pointer;
+            transition: 0.3s;
 }
-
+.listProduct .item button:hover {
+            background-color: #3e7b67;
+        }
 /* cart */
-.cartTab{
+.cartTab {
     width: 400px;
     background-color: #22663e;
     color: #eee;
@@ -81,44 +121,55 @@ header{
     bottom: 0;
     display: grid;
     grid-template-rows: 70px 1fr 70px;
-    transition: .5s;
+    transition: 0.5s;
+    font-family: Arial, sans-serif;
 }
-body.showCart .cartTab{
+
+body.showCart .cartTab {
     right: 0;
 }
-body.showCart .container{
+
+body.showCart .container {
     transform: translateX(-250px);
 }
-.cartTab h1{
+
+.cartTab h1 {
     padding: 20px;
     margin: 0;
     font-weight: 300;
 }
-.cartTab .btn{
+
+.cartTab .btn {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    font-family: sans-serif;
 }
-.cartTab button{
+
+.cartTab button {
     background-color: #E8BC0E;
     border: none;
     font-family: Poppins;
     font-weight: 500;
     cursor: pointer;
 }
-.cartTab .close{
+
+.cartTab .close {
     background-color: #787272;
 }
-.listCart .item img{
+
+.listCart .item img {
     width: 100%;
 }
-.listCart .item{
+
+.listCart .item {
     display: grid;
     grid-template-columns: 70px 150px 50px 1fr;
     gap: 10px;
     text-align: center;
     align-items: center;
 }
-.listCart .quantity span{
+
+.listCart .quantity span {
     display: inline-block;
     width: 25px;
     height: 25px;
@@ -127,30 +178,34 @@ body.showCart .container{
     color: #555;
     cursor: pointer;
 }
-.listCart .quantity span:nth-child(2){
+
+.listCart .quantity span:nth-child(2) {
     background-color: transparent;
     color: #eee;
     cursor: auto;
 }
-.listCart .item:nth-child(even){
+
+.listCart .item:nth-child(even) {
     background-color: #eee1;
 }
-.listCart{
+
+.listCart {
     overflow: auto;
 }
-.listCart::-webkit-scrollbar{
+
+.listCart::-webkit-scrollbar {
     width: 0;
 }
+
 @media only screen and (max-width: 992px) {
-    .listProduct{
+    .listProduct {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-
 /* mobile */
 @media only screen and (max-width: 768px) {
-    .listProduct{
+    .listProduct {
         grid-template-columns: repeat(2, 1fr);
     }
 }

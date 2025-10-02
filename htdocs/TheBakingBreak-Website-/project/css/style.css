@@ -159,62 +159,44 @@ nav ul li :hover {
 .search {
     display: flex;
     align-items: center;
-    margin-right: 30px;
-    /*transform: translate(150px);*/
-    
+    gap: 10px; /* Added clean spacing between input and button */
 }
-
-
 
 .search input {
     width: 30vw;
-    height: 25px;
+    height: 35px; /* Increased for better usability */
     border-radius: 10px;
-    margin: 0 20px 0 0;
-    padding: 0 0 0 10px;
-    font-family: 'Poppins', sans-serif;
-    
+    padding: 0 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search input:focus {
+    border-color: #c658aa;
+    box-shadow: 0 0 5px rgba(198, 88, 170, 0.6);
 }
 
 .btn {
-    background-color: #529a82;
-    color: aliceblue;
-    padding: 3px 5px 3px 5px;
+    background-color: #c658aa;
+    color: white;
+    padding: 8px 15px;
+    border: none;
     border-radius: 10px;
-    border: 2px solid white;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.login-subcontainer{
-    background-color: aliceblue;
-    position: relative;
+.btn:hover {
+    background-color: #a53f8b;
+    transform: translateY(-2px);
 }
 
-.login-btn{
-    display: flex;
-    width: 100px;
-    justify-content: center;
-    margin-top: 10px;
-}
 
-.login:hover .login-subcontainer{
-    display: grid;
-    z-index: 1;
-}
-
-.login:hover .signup{
-    display: grid;
-    z-index: 1;
-}
-
-/*nav button:hover {
-    font-weight: bold;
-}*/
-
-
-
+/* Navigation container */
 .nav-icons {
     display: flex;
     align-items: center;
@@ -225,52 +207,145 @@ nav ul li :hover {
     text-decoration: none;
 }
 
+/* Login wrapper */
 .login {
     position: relative;
+    margin-right: 10px;
 }
 
+/* Login icon styling */
 .login .material-symbols-outlined {
     margin-left: 25px;
     font-size: 32px;
+    color: white;
+    cursor: pointer;
 }
 
+/* Sign Up button styling */
 .login-btn {
     position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
+    top: 100%; /* directly below the icon */
+    left: 70%;
+    transform: translateX(-50%);
     background-color: #d129d8;
-    padding: 8px 16px;
+    padding: 10px 16px 0 16px;
     color: white;
     font-size: 14px;
     border-radius: 5px;
-    transition: 0.3s;
-    display: none; /* Hide SignUp initially */
-    margin-top: 31px;
+    margin-top: 8px;
+    text-align: center;
+    cursor: pointer;
+
+    /* Keep it visible for now */
+    opacity: 0;/*1 to make it visible*/
+    pointer-events: none;/*auto to prevent it from being clickable*/
+
+    transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+    width: 200%;
+    height: 30px;
 }
 
+/* Create the pointed top */
+.login-btn::before {
+    content: "";
+    position: absolute;
+    top: -8px; /* move above the button */
+    left: 50%; /* center horizontally */
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+
+    /* Triangle shape */
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #d129d8; /* same color as button */
+}
+
+/* Hover state to show the Sign Up button */
+.login:hover .login-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Button hover effect */
 .login-btn:hover {
     background-color: #fc2fcc;
 }
 
-/* Show SignUp button when hovering over login icon */
-.login:hover .login-btn {
-    display: block;
-}
-
-/* Ensure Material Icons are styled white */
-.material-symbols-outlined {
-    color: white;
-    cursor: pointer;
-}
  
 
 
-
-.container {
-    min-height: calc(100vh - 20px - 10vh);
+.cartTab {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background: #fff;
+    z-index: 9999;
+    overflow-y: auto;
 }
+
+body.showCart .cartTab {
+    display: block;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    color: white; /* makes the menu icon white */
+    font-size: 32px; /* optional, make it bigger */
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none; /* hidden by default */
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    z-index: 100;
+    padding: 10px 0;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.user-info {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+hr {
+    margin: 5px 0;
+    border: 0.5px solid #ddd;
+}
+
+/* Show dropdown when parent has "show" */
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+/* .container {
+    min-height: calc(100vh - 20px - 10vh);
+} */
 
 .slider {
     
@@ -370,61 +445,122 @@ nav ul li :hover {
     color: #529a82;
 }
 
-#discription-style {
+#description-style {
     font-size: large;
     font-weight: 500;
 }
 
+/* Main recipe container */
 .recipe {
-    margin-top: 70px;
-    margin-bottom: 70px;
     display: flex;
-    flex-direction: row;
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 60px;
+    background-image: url("recipebg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Dark semi-transparent overlay */
+.recipe::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* darker overlay */
+    z-index: 1;
+}
+
+/* Content wrapper */
+.re {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Main heading text */
 .recipes-written {
-    height: max-content;
-    color: white;
-    padding: 90px;
-    padding-bottom: 0;
     font-size: 40px;
-    font-weight: bolder;
+    font-weight: 700;
     font-family: 'Poppins', sans-serif;
+    color: #fff; /* White for contrast */
+    margin-bottom: 10px;
 }
 
+/* Subheading text */
 .recipes-written2 {
-    padding: 10px 0 80px 100px;
-    color: aliceblue;
+    font-size: 18px;
     font-weight: 500;
-    color: white;
+    font-family: 'Poppins', sans-serif;
+    color: #f1f1f1; /* Light gray for contrast */
+    margin-top: 5px;
 }
 
+/* Recipe Button */
 .recipe-button {
-    background-color: red;
-    width: 250px;
-    height: 40px;
-    padding: 5px 0 5px;
-    border-radius: 15px;
-    margin: 130px 0 0 400px;
+    background-color: #e63946; /* bold red */
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 500;
-    color: aliceblue;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 2;
+    margin-left: 20px;
 }
+
+.recipe-button:hover {
+    background-color: #d62828;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button link */
+.recipe a {
+    text-decoration: none;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .recipe {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        text-align: center;
+        height: auto;
+    }
+
+    .recipes-written {
+        font-size: 28px;
+    }
+
+    .recipes-written2 {
+        font-size: 16px;
+        padding: 0;
+    }
+
+    .recipe-button {
+        margin: 20px 0 0 0;
+    }
+}
+
+
 
 body {
     overflow-x: hidden;
-}
-
-section {
-
-
-    color: aliceblue;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
-
-
 }
 
 .bakersblog {
@@ -477,12 +613,12 @@ section {
 
 .image1 {
     margin-left: 20px;
-    margin-right: 80px;
+    margin-right: 100px;
     
 }
 
 .image2 {
-    margin-right: 50px;
+    /* margin-right: 50px; */
 }
 
 
@@ -518,50 +654,72 @@ width: 500px;
     font-size: 12px;
     margin-top: 0;
     margin-bottom: 20px;
+    color: #000;
 }
 
-section{
-    width:85vw;
+section {
+    width: 85vw;
     height: 40vh;
-}
-.subscribe {
-
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
+.subscribe {
+    display: flex;
+    justify-content: space-between; /* space between left and right */
+    align-items: center;
+    width: 100%;
+    padding: 0 50px; /* padding on sides */
 }
 
 .sub-written {
-    margin: 100px;
-    padding: 50px;
+    max-width: 40%; /* limit paragraph width */
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sub-written h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
 .sub-written p {
-    padding: 52px;
     font-size: 18px;
-    padding: 52px 0 0 25px;
+    line-height: 1.5;
+}
+
+.enter-email-id {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between input and button */
 }
 
 .enter-email-id input {
     font-family: 'Poppins', sans-serif;
-    margin-right: 150px;
-    margin-top: 240px;
-    padding: 10px;
-    width: 500px;
-    height: 35px;
+    padding: 10px 200px 10px 15px;
+    width: 300px;
+    height: 40px;
     border-radius: 20px;
-
+    border: 1px solid #ccc;
 }
 
 .send button {
-    padding: 0 3px 0 3px;
+    padding: 5px;
     border-radius: 15px;
-    transform: translate(-130px, 242px);
     background-color: rgb(243, 139, 139);
+    border: none;
+    cursor: pointer;
 }
+
+.send img {
+    display: block;
+}
+
 
 .review {
     margin-left: 100px;
+    margin-top: 50px;
 }
 
 .review h2 {
@@ -576,7 +734,7 @@ section{
     width: 1400px;
 
     margin-top: 0px;
-    margin-left: 100px;
+    margin-left: 50px;
     margin-bottom: 100px;
     justify-content: center;
 
@@ -620,42 +778,65 @@ section{
     margin: 20px 0 20px;
 }
 
+/* Information Section */
 .info {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 20px 0;
+    flex-wrap: wrap;
 }
 
+/* Company Info */
 .tbbinfo {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 400px;
+    text-align: left;
 }
 
 .tbbinfo p {
     margin-top: 20px;
     margin-left: 30px;
-    text-align: left;
     font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    /* line-height: 1.6; */
+    color: #333;
 }
 
-.info ul {
+/* Headings for columns */
+.info h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(252, 36, 196);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top:15px ;
+    margin-bottom: 15px;
+}
 
+/* List items */
+.info ul {
     font-family: 'Poppins', sans-serif;
     list-style: none;
-    margin: 20px 0 0 150px;
-
     text-align: center;
-    color:
-        rgb(252, 36, 196);
-
+    padding: 0;
+    margin: 0;
+    color:rgb(252, 36, 196);
 }
 
 .info ul li {
     margin: 5px;
     padding: 5px;
+    font-size: 14px;
     text-align: center;
-    color: black;
+    color: #000;
+    cursor: pointer;
+    transition: font-weight 0.2s ease-in-out;
 }
 
 .info ul li:hover {
@@ -666,8 +847,10 @@ section{
 .social {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 15px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .social img {
@@ -679,17 +862,18 @@ section{
 }
 
 .social p {
+    text-align: center; 
     font-size: 20px;
     font-family: 'Poppins', sans-serif;
     color: rgb(252, 36, 196);
-    text-align: center;
+    font-weight: bold;
 }
 
 /* Payment Section */
 .pay {
     width: 100%;
     text-align: right;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 /* Chat With Us Button */
@@ -721,17 +905,27 @@ section{
     font-size: 14px;
 }
 
-.chat-with-us a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
 .chat-with-us img {
     width: 25px;
     height: auto;
 }
 
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tbbinfo {
+        width: 90%;
+    }
+
+    .pay {
+        text-align: center;
+    }
+}
 footer {
     height: 10vh;
     background-color: var(--main-bg-color);

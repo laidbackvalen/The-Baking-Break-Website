@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BakeCraft</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fff8f9;
+            /* Light bakery theme background */
+            color: #333;
+            line-height: 1.5;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .c-l {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .c-l-i {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logo {
+            margin: auto;
+        }
+
+        /* Header */
+        header {
+            /*background: url("image/blog-image3.webp") no-repeat center center/cover;*/
+            /*padding: 20px 0;*/
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            margin: 60px 0 0 0;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #c658aa;
+            /* Purple overlay for readability */
+            z-index: -1;
+        }
+
+        header .logo a {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ffdce6;
+            /* Soft pink hover */
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: url("image/blog-image3.webp") no-repeat center center/cover;
+            position: relative;
+            color: white;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(88, 13, 69, 0.5);
+            /* Semi-transparent overlay */
+            z-index: 0;
+        }
+
+        .hero h1,
+        .hero p,
+        .hero .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .hero .btn {
+            background: #529a82;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background: #529a82;
+        }
+
+        /* Section Headings */
+        section h2 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 26px;
+            color: #529a82;
+        }
+
+        /* Grid */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Community Section */
+        .community {
+            text-align: center;
+            padding: 50px 20px;
+            background: url("images/community-bg.jpg") no-repeat center center/cover;
+            position: relative;
+            color: white;
+        }
+
+        .community::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff8f9;
+            /* Purple overlay */
+            z-index: 0;
+        }
+
+        .community h2,
+        .community p,
+        .community .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        .community .btn {
+            background: #529a82;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .community .btn:hover {
+            background: #529a82;
+        }
+
+        /* Footer */
+        footer {
+            background: #529a82;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #529a82;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <div class="container">
+            <div class="c-l">
+                <div class="c-l-i">
+                    <div class="logo" style="margin: right 10px; ;">
+                        <a
+                            href="https://www.google.com/search?q=the+baking+break&oq=&aqs=chrome.0.35i39i362l8.360970j0j7&sourceid=chrome&ie=UTF-8"><img
+                                src="image/2D-PNG.png" alt="The Baking Break" width="150px" height="120px"></a>
+                    </div>
+                    <div class="logo"><a href="index.html">BakeCraft</a></div>
+
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#recipe">Recipes</a></li>
+                        <li><a href="search.html">Products</a></li>
+                        <li><a href="#communityy">Community</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Sweet creations, endless possibilities</h1>
+            <p>Discover recipes, tutorials, and products to make baking fun!</p>
+            <a href="recipes.html" class="btn">Explore Recipes</a>
+        </div>
+    </section>
+
+    <!-- Featured Recipes -->
+    <section class="featured" id="recipe">
+        <div class="container">
+            <h2>Featured Recipes</h2>
+            <div class="grid">
+                <div class="card">
+                    <a href="https://www.youtube.com/watch?v=INiCHElHVWQ">
+                    <img src="image\apple-cake-gbe8927429_640_2000x.webp" alt="Apple Cake"> </a>
+                    <p>Apple Cake</p>
+                   
+                </div>
+                <div class="card"><a href="https://www.youtube.com/watch?v=fEl7_ti9_pQ">
+                    <img src="image/source.unsplash_sprinklers.jpg" alt="Cookies" style="height: 70%;"></a>
+                    <p>Cookies</p>
+                </div>
+                <div class="card"><a href="https://www.youtube.com/watch?v=NI00jO_UR7w">
+                    <img src="image/source.unsplash_muffins.jpg" alt="Vanilla Cupcakes" style="height: 70%;"></a>
+                    <p>Vanilla Cupcakes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <h2>Baking Essentials</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="image/cold, smooth & tasty. (172).png" alt="Knives">
+                    <p>Knives - Rs. 120</p>
+                </div>
+                <div class="card">
+                    <img src="image/vTBB_poster.png" alt="Mixer">
+                    <p>Mixer - Rs. 100</p>
+                </div>
+                <div class="card">
+                    <img src="image/cold, smooth & tasty. (54).png" alt="Cake Tin">
+                    <p>Cake Tin - Rs. 230</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community" id="communityy">
+        <div class="container">
+            <h2>Join Our Community</h2>
+            <p style="color: black;padding: 0 0 20px 0;">Share your recipes, ask questions, and connect with other
+                bakers!</p>
+            <a href="community.html" class="btn">Join Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Contact us: <a href="mailto:bakecraft@gmail.com" style="color: black;">www.thebakingbreak@gmail.com</a> | +91-860-588-6969</p>
+            <p>Follow us:
+                <a href="https://www.instagram.com/the_bakingbreak/?utm_medium=copy_link" target="_blank"
+                    rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.facebook.com/thebakingbreak/" target="_blank" rel="noopener noreferrer">
+                    Facebook</a>
+                <a href="https://mobile.twitter.com/thebakingbreak" target="_blank"
+                    rel="noopener noreferrer">Twitter</a>
+            </p>
+            <p>&copy; 2025 BakeCraft. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

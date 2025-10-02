@@ -1,264 +1,232 @@
+<?php
+session_start();
+include 'connect_user.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['role'] = $row['role'];
+
+        // Redirect based on role
+        if ($row['role'] == 'admin') {
+            header("Location: admin-dashboard.php");
+        } else {
+            header("Location: index.php");
+        }
+    } else {
+        echo "Invalid login";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-image: url("image/tbb_poster_recent.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Baking Break - Login & Registration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .main-container{
-            display: block;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .logo {
-            text-align: center;
-            margin-bottom: 10px; /* Adjust spacing */
-        }
-        
-        .logo img {
-            width: 250px; /* Adjust size as needed */
-        }
-        
-        .signin-text, .signup-text {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 400px; /* Adjust width if needed */
-            text-align: center;
-            margin: 0;
-            
-        }
-        
-        .form-container img {
-            width: 50%;
-            margin-bottom: 20px;
-        }
-        
-        .form-group {
-            width: 100%;
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        
-        label {
-            font-weight: bold;
-            display: flex;
-            margin-bottom: 5px;
-        }
-        
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        
-        button {
-            background-color: #fc2fcc;
-            color: white;
-            border: none;
-            padding: 12px;
-            margin-top: 20px;
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        
-        button:hover {
-            background-color: #d129d8;
-        }
-        
-        .or {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-            text-align: center;
-        }
-        
-        .links {
-            display: block;
-            text-align: center;
-            font-weight: bold;
-            margin-top: 0.9rem;
-        }
-        
-        /* Fixing form transition */
-        #signup, #signIn {
-            position: absolute;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease-in-out;
-        }
-        
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        
-    </style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("image/tbb_poster_recent.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container.active {
+      display: flex;
+    }
+
+    .logo img {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
+    .form-container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      text-align: center;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .button {
+      background-color: #fc2fcc;
+      color: white;
+      border: none;
+      padding: 12px;
+      margin-top: 10px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .button:hover {
+      background-color: #d129d8;
+    }
+
+    .links {
+      margin-top: 15px;
+    }
+
+    .links button {
+      background: none;
+      border: none;
+      color: #d129d8;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      text-align: left;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="main-container">
-    <div class="container" id="signup" style="display: none;">
-        <div class="logo">
-            <img src="image/The Baking Break_NAME_PIC.png" alt="The Baking Break Logo">
-        </div>
-
-        <h2 class="signup-text">Register</h2>
-
-        <div class="form-container" style="margin-left:560px;">
-            <img src="image/login.png" alt="Login Image">
-
-            <form method="POST" action="register.php">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Enter Username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" placeholder="Enter Email" required>
-                </div>
-
-                <!-- <div class="remember">
-                    <label><input type="checkbox" name="remember"> Remember me</label>
-                </div> -->
-
-               <input type="submit" class="button" value="Sign Up" name="signUp">
-
-                <div class="forgot" style="color: white;">
-                    <p>Forgotten Account?</p>
-                    <p>Sign up for The Baking Break</p>
-                </div>
-            </form>
-            <p class="or">--------or----------</p>
-            <div class="icons">
-                <i class="fab fa-google"></i>
-                <i class="fab fa-facebook"></i>
-            </div>
-            <div class="links">
-                <p>Already Have Account?</p>
-                <button id="signInButton" style="background-color:#d129d8;">Sign In</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="signIn">
+  <!-- SIGN UP FORM -->
+  <div class="container" id="signup">
     <div class="logo">
-        <img src="image/The Baking Break_NAME_PIC.png" alt="The Baking Break Logo">
+      <img src="image/The Baking Break_NAME_PIC.png" alt="The Baking Break Logo">
     </div>
-
-    <h2 class="signin-text">SignIn Form</h2>
-
     <div class="form-container">
-        <img src="image/login.png" alt="Login Image">
-
-        <!-- Sign In Form -->
-        <form method="POST" action="index.php"> <!-- Change action to login.php or appropriate file -->
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter Email" required> <!-- Change username to email -->
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter Password" required>
-            </div>
-
-            <p class="recover">
-                <a href="#">Recover Password</a>
-            </p>
-            <input type="submit" class="button" value="Sign In" name="signIn">
-
-            <div class="forgot" style="color: white;">
-                <p>Forgotten Account?</p>
-                <p>Sign up for The Baking Break</p>
-            </div>
-        </form>
-
-        <p class="or">--------or----------</p>
-
-        <!-- Social Media Icons (Optional) -->
-        <div class="icons">
-            <i class="fab fa-google"></i>
-            <i class="fab fa-facebook"></i>
+      <h2>Register</h2>
+      <form method="POST" action="register.php" onsubmit="return validateSignup()">
+        <div class="form-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" placeholder="Enter Username" required>
         </div>
 
-        <!-- Sign Up Link -->
-        <div class="links">
-            <p>Don't Have an Account Yet?</p>
-            <button id="signUpButton" style="background-color:#d129d8;">Sign Up</button> <!-- Sign Up button (can trigger a modal or redirect) -->
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" placeholder="Enter Email" required>
         </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" placeholder="Enter Password" required minlength="6">
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter Password" required minlength="6">
+          <span id="password-error" class="error"></span>
+        </div>
+
+        <input type="submit" class="button" value="Sign Up" name="signUp">
+      </form>
+
+      <div class="links">
+        <p>Already have an account? 
+          <button onclick="showSignIn()">Sign In</button>
+        </p>
+      </div>
     </div>
-</div>
+  </div>
 
-    <script>
-        // Toggle between SignIn and SignUp forms
-        document.getElementById("signUpButton").addEventListener("click", function () {
-            document.getElementById("signIn").style.display = "none";
-            document.getElementById("signup").style.display = "block";
-        });
+  <!-- SIGN IN FORM -->
+  <div class="container active" id="signIn">
+    <div class="logo">
+      <img src="image/The Baking Break_NAME_PIC.png" alt="The Baking Break Logo">
+    </div>
+    <div class="form-container">
+      <h2>Sign In</h2>
+      <form method="POST" action="register.php">
+        <div class="form-group">
+          <label for="signin-email">Email</label>
+          <input type="email" id="signin-email" name="email" placeholder="Enter Email" required>
+        </div>
 
-        document.getElementById("signInButton").addEventListener("click", function () {
-            document.getElementById("signup").style.display = "none";
-            document.getElementById("signIn").style.display = "block";
-        });
-    </script>
+        <div class="form-group">
+          <label for="signin-password">Password</label>
+          <input type="password" id="signin-password" name="password" placeholder="Enter Password" required>
+        </div>
 
+        <input type="submit" class="button" value="Sign In" name="signIn">
+      </form>
+
+      <div class="links">
+        <p>Don't have an account? 
+          <button onclick="showSignUp()">Sign Up</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle between Sign In and Sign Up
+    function showSignUp() {
+      document.getElementById("signIn").classList.remove("active");
+      document.getElementById("signup").classList.add("active");
+    }
+
+    function showSignIn() {
+      document.getElementById("signup").classList.remove("active");
+      document.getElementById("signIn").classList.add("active");
+    }
+
+    // Validate signup form
+    function validateSignup() {
+      const password = document.getElementById("signup-password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+      const error = document.getElementById("password-error");
+
+      if (password !== confirmPassword) {
+        error.textContent = "Passwords do not match!";
+        return false;
+      } else {
+        error.textContent = "";
+        return true;
+      }
+    }
+  </script>
 </body>
-
 </html>

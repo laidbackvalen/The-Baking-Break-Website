@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search in JavaScript</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ddd;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding: 0 0 80px 0;
+        }
+
+        .container {
+            width: 1200px;
+            max-width: 95%;
+            margin: auto;
+        }
+
+        /* Search section */
+        .search {
+            display: flex;
+            padding: 30px 0;
+            justify-content: space-between;
+            margin-top: 28px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search h1 {
+            letter-spacing: 3px;
+            border-bottom: 2px solid green;
+            padding-bottom: 10px;
+        }
+       
+        .search input {
+            width: 30vw;
+            height: 25px;
+            padding: 0 10px 0 10px;
+            background: white;
+            border: 1px solid #000;
+            font-size: 18px;
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .search input::placeholder {
+            color: green;
+            font-weight: 500;
+        }
+
+        .search input:focus {
+            border-color: #48a809;
+        }
+        .icon-cart {
+            position: relative;
+            display: inline-block;
+        }
+
+        .icon-cart svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .icon-cart svg path {
+            stroke: black;
+            /* make cart lines white */
+        }
+
+        .icon-cart span {
+            position: absolute;
+            background-color: red;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 12px;
+            top: -5px;
+            right: -10px;
+        }
+
+        /* Product List */
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .card {
+            max-width: 100%;
+            margin: 37px auto;
+        }
+
+        .card h2 {
+            color: #529a82;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cards a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .card-items {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 220px;
+            border-radius: 15px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .card-items:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .card-items img {
+            border-radius: 10px;
+            max-width: 200px;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .lines p {
+            margin: 4px 0;
+            font-size: 15px;
+        }
+
+        .lines .discount {
+            color: #48a809;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .lines button {
+            margin-top: 8px;
+            background-color: #529a82;
+            font-size: 16px;
+            border-radius: 15px;
+            border: none;
+            color: aliceblue;
+            padding: 8px;
+            width: 180px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lines button:hover {
+            background-color: #3e7b67;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards {
+                justify-content: center;
+            }
+
+            .search {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <!-- Search Bar -->
+            <div class="search">
+                <h1>All Products</h1>
+                <input type="text" id="find" placeholder="Search here..." onkeyup="searchProducts()" style="margin-left: 300px;">
+                <!-- Shopping Cart Icon -->
+                    <div>
+                        <a href="cart.html" aria-label="Shopping Cart" class="icon-cart">
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+                            </svg>
+                            <span>0</span>
+                        </a>
+                    </div>
+            </div>
+            
+
+            <!-- Product List -->
+            <div class="listProduct">
+                <div class="cards">
+                    <div class="card-items">
+                        <div class="item"> <img id="when-card-img-hov" src="image/cold, smooth & tasty. (83).png" alt="" width="200px" height="180px">
+                            <div class="lines">
+                                <p class="text-center my-1" id="description-style">Food Flavour Essence </p>
+                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="1" data-name="Food Flavour Essence" data-price="230" data-image="image/cold_smooth_tasty_83.png"> Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-items" id="trans">
+                        <div class="item"> <img src="image/cold, smooth & tasty. (12).png" alt="" width="200px" height="180px">
+                            <div class="lines" id="trans">
+                                <p class="text-center my-1" id="description-style">Turning Table</p>
+                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="2" data-name="Turning Table" data-price="230" data-image="image/cold, smooth & tasty. (12).png"> Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-items">
+                        <div class="item"> <img src="image/cold, smooth & tasty. (155).png" alt="" width="200px" height="180px">
+                            <div class="lines">
+                                <p class="text-center my-1" id="description-style">Nozzles </p>
+                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="3" data-name="Nozzles" data-price="230" data-image="image/cold, smooth & tasty. (155).png"> Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-items">
+                        <div class="item"> <img src="image/cold, smooth & tasty. (156).png" alt="" width="200px" height="180px">
+                            <div class="lines">
+                                <p class="text-center my-1" id="description-style">Baking Pan</p>
+                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="4" data-name="Baking Pan " data-price="230" data-image="image/cold, smooth & tasty. (156).png"> Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-items">
+                        <div class="item"> <img src="image/cold, smooth & tasty. (165).png" alt="" width="200px" height="180px">
+                            <div class="lines">
+                                <p class="text-center my-1" id="description-style">Plastic Moulds</p>
+                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="5" data-name="Plastic Moulds" data-price="230" data-image="image/cold, smooth & tasty. (165).png"> Add to Cart </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Featured Products -->
+                <div class="card">
+                    <div class="cards">
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (178).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Bar Moulds</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="6" data-name="Bar Silicon Moulds" data-price="230" data-image="image/cold, smooth & tasty. (178).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (18).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Fondant Cutters</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="7" data-name="Fondant Cutters " data-price="230" data-image="image/cold, smooth & tasty. (18).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (190).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Cartoon Moulds</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="8" data-name="Cartoon Shaped Moulds" data-price="230" data-image="image/cold, smooth & tasty. (190).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (3).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style"> Cupcake Mould</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="9" data-name="Silicon Cupcake Mould set" data-price="230" data-image="image/cold, smooth & tasty. (3).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (40).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Baking Tool</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="10" data-name="Baking Tool" data-price="230" data-image="image/cold, smooth & tasty. (40).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Best Sellers -->
+                <div class="card">
+                    <div class="cards">
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (6).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Cake Topper</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="11" data-name="Cake Topper" data-price="230" data-image="image/cold, smooth & tasty. (6).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (60).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Doraemon Moulds</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="12" data-name="Doraemon Silicon Moulds" data-price="230" data-image="image/cold, smooth & tasty. (60).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (62).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Love Themed Moulds</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="13" data-name="Love Themed Moulds" data-price="230" data-image="image/cold, smooth & tasty. (62).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (72).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Birthday Toppers</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="14" data-name="Birthday Toppers" data-price="230" data-image="image/cold, smooth & tasty. (72).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-items">
+                            <div class="item"> <img src="image/cold, smooth & tasty. (79).png" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style">Spray Color Bottle</p>
+                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
+                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="15" data-name="Edible Spray Color Bottle" data-price="230" data-image="image/cold, smooth & tasty. (79).png"> Add to Cart </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Script -->
+    <script>
+        function searchProducts() {
+            const input = document.getElementById('find').value.toLowerCase();
+            const cards = document.querySelectorAll('.card-items');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+        // Add event listeners for all Add to Cart buttons
+        document.querySelectorAll(".addCart").forEach(button => {
+            button.addEventListener("click", function() {
+                const id = this.dataset.id;
+                const name = this.dataset.name;
+                const price = parseFloat(this.dataset.price);
+                const image = this.dataset.image;
+
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                const index = cart.findIndex(item => String(item.product_id) === String(id));
+                if (index >= 0) {
+                    cart[index].quantity += 1;
+                } else {
+                    cart.push({
+                        product_id: id,
+                        quantity: 1,
+                        name,
+                        price,
+                        image
+                    });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartIcon();
+                // Optional: replace alert with a nicer notification
+                console.log(name + " added to cart!");
+            });
+        });
+
+        const updateCartIcon = () => {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector(".icon-cart span").innerText = totalQuantity;
+        };
+
+        // Call it on page load
+    
+    </script>
+</body>
+
+</html>
