@@ -1,5 +1,11 @@
-<?php session_start();
-include("connect_user.php"); ?>
+<?php
+include 'connect_user.php';
+
+// Fetch products for each section
+$bakeware = $conn->query("SELECT * FROM products WHERE category='bakeware'");
+$featured = $conn->query("SELECT * FROM products WHERE category='featured'");
+$bestsellers = $conn->query("SELECT * FROM products WHERE category='bestseller'");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
@@ -150,171 +156,114 @@ include("connect_user.php"); ?>
             <video controls autoplay loop poster="image/The Baking Break_NAME_PIC.png" src="video/tbbvid.mp4" width="50%" height="auto">
             </video>
         </div>
+        <!-- Bakeware Section -->
         <div id="bakeware" class="card">
             <h2 class="my-2">Lets Get Bake Together!</h2>
-            <div class="listProduct">
-                <div class="cards">
-                    <div class="card-items">
-                        <div class="item"> <img id="when-card-img-hov" src="image/cold, smooth & tasty. (83).png" alt="" width="200px" height="180px">
-                            <div class="lines">
-                                <p class="text-center my-1" id="description-style">Food Flavour Essence </p>
-                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="1" data-name="Food Flavour Essence" data-price="230" data-image="image/cold_smooth_tasty_83.png"> Add to Cart </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-items" id="trans">
-                        <div class="item"> <img src="image/cold, smooth & tasty. (12).png" alt="" width="200px" height="180px">
-                            <div class="lines" id="trans">
-                                <p class="text-center my-1" id="description-style">Turning Table</p>
-                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="2" data-name="Turning Table" data-price="230" data-image="image/cold, smooth & tasty. (12).png"> Add to Cart </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-items">
-                        <div class="item"> <img src="image/cold, smooth & tasty. (155).png" alt="" width="200px" height="180px">
-                            <div class="lines">
-                                <p class="text-center my-1" id="description-style">Nozzles </p>
-                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="3" data-name="Nozzles" data-price="230" data-image="image/cold, smooth & tasty. (155).png"> Add to Cart </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-items">
-                        <div class="item"> <img src="image/cold, smooth & tasty. (156).png" alt="" width="200px" height="180px">
-                            <div class="lines">
-                                <p class="text-center my-1" id="description-style">Baking Pan</p>
-                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="4" data-name="Baking Pan " data-price="230" data-image="image/cold, smooth & tasty. (156).png"> Add to Cart </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-items">
-                        <div class="item"> <img src="image/cold, smooth & tasty. (165).png" alt="" width="200px" height="180px">
-                            <div class="lines">
-                                <p class="text-center my-1" id="description-style">Plastic Moulds</p>
-                                <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="5" data-name="Plastic Moulds" data-price="230" data-image="image/cold, smooth & tasty. (165).png"> Add to Cart </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Featured Products -->
-                <div class="card">
-                    <h2 class="my-2">Featured Products</h2>
-                    <div class="cards">
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (178).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Bar Moulds</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="6" data-name="Bar Silicon Moulds" data-price="230" data-image="image/cold, smooth & tasty. (178).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (18).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Fondant Cutters</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="7" data-name="Fondant Cutters " data-price="230" data-image="image/cold, smooth & tasty. (18).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (190).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Cartoon Moulds</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="8" data-name="Cartoon Shaped Moulds" data-price="230" data-image="image/cold, smooth & tasty. (190).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (3).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Cupcake Mould</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="9" data-name="Silicon Cupcake Mould set" data-price="230" data-image="image/cold, smooth & tasty. (3).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (40).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Baking Tool</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="10" data-name="Baking Tool" data-price="230" data-image="image/cold, smooth & tasty. (40).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="recipe" id="recipes">
-                    <div class="re">
-                        <div class="recipes-written">
-                            <p>Make amazing cakes</p>
-                        </div>
-                        <div class="recipes-written2">
-                            <p>More than 70+ recipes available</p>
-                        </div>
-                    </div><a href="https://sallysbakingaddiction.com/" style="text-decoration: none;">
-                        <button class="recipe-button">Our Recipes &rarr; </button></a>
-                </div>
+            <div class="listProduct" style="position: relative;">
+                <!-- Left button -->
+                <button class="slide-btn left" onclick="slideLeft('bakeware')">&#10094;</button>
+                <!-- Right button -->
+                <button class="slide-btn right" onclick="slideRight('bakeware')">&#10095;</button>
 
-                <!-- Best Sellers -->
-                <div class="card">
-                    <h2 class="my-2">Best Sellers</h2>
-                    <div class="cards">
+                <div class="cards" id="bakeware-cards">
+                    <?php while ($row = $bakeware->fetch_assoc()): ?>
                         <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (6).png" alt="" width="200px" height="180px">
+                            <div class="item">
+                                <img id="when-card-img-hov" src="image/<?php echo $row['image']; ?>" alt="" width="200px" height="180px">
                                 <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Cake Topper</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="11" data-name="Cake Topper" data-price="230" data-image="image/cold, smooth & tasty. (6).png"> Add to Cart </button>
+                                    <p class="text-center my-1" id="description-style"><?php echo $row['name']; ?></p>
+                                    <p class="text-center my-1 price" id="discount">Rs. <?php echo $row['price']; ?></p>
+                                    <p class="text-center my-1">Grab Now!</p>
+                                    <button class="addCart"
+                                        data-id="<?php echo $row['id']; ?>"
+                                        data-name="<?php echo $row['name']; ?>"
+                                        data-price="<?php echo $row['price']; ?>"
+                                        data-image="image/<?php echo $row['image']; ?>">
+                                        Add to Cart
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (60).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Doraemon Moulds</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="12" data-name="Doraemon Silicon Moulds" data-price="230" data-image="image/cold, smooth & tasty. (60).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (62).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Love Themed Moulds</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="13" data-name="Love Themed Moulds" data-price="230" data-image="image/cold, smooth & tasty. (62).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (72).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Birthday Toppers</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="14" data-name="Birthday Toppers" data-price="230" data-image="image/cold, smooth & tasty. (72).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-items">
-                            <div class="item"> <img src="image/cold, smooth & tasty. (79).png" alt="" width="200px" height="180px">
-                                <div class="lines">
-                                    <p class="text-center my-1" id="description-style">Spray Color Bottle</p>
-                                    <p class="text-center my-1 price" id="discount">Rs. 230</p>
-                                    <p class="text-center my-1">Grab Now!</p> <button class="addCart" data-id="15" data-name="Edible Spray Color Bottle" data-price="230" data-image="image/cold, smooth & tasty. (79).png"> Add to Cart </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endwhile; ?>
                 </div>
+            </div>
+        </div>
 
+        <!-- Featured Products Section -->
+        <div id="featured" class="card">
+            <h2 class="my-2">Featured Products</h2>
+            <div class="listProduct" style="position: relative;">
+                <button class="slide-btn left" onclick="slideLeft('featured')">&#10094;</button>
+                <button class="slide-btn right" onclick="slideRight('featured')">&#10095;</button>
+
+                <div class="cards" id="featured-cards">
+                    <?php while ($row = $featured->fetch_assoc()): ?>
+                        <div class="card-items">
+                            <div class="item">
+                                <img src="image/<?php echo $row['image']; ?>" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style"><?php echo $row['name']; ?></p>
+                                    <p class="text-center my-1 price" id="discount">Rs. <?php echo $row['price']; ?></p>
+                                    <p class="text-center my-1">Grab Now!</p>
+                                    <button class="addCart"
+                                        data-id="<?php echo $row['id']; ?>"
+                                        data-name="<?php echo $row['name']; ?>"
+                                        data-price="<?php echo $row['price']; ?>"
+                                        data-image="image/<?php echo $row['image']; ?>">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipe" id="recipes">
+            <div class="re">
+                <div class="recipes-written">
+                    <p>Make amazing cakes</p>
+                </div>
+                <div class="recipes-written2">
+                    <p>More than 70+ recipes available</p>
+                </div>
+            </div>
+            <a href="https://sallysbakingaddiction.com/" style="text-decoration: none;">
+                <button class="recipe-button">Our Recipes &rarr; </button>
+            </a>
+        </div>
+
+        <!-- Best Sellers -->
+
+        <!-- Best Sellers Section -->
+        <div id="bestsellers" class="card">
+            <h2 class="my-2">Best Sellers</h2>
+            <div class="listProduct" style="position: relative;">
+                <button class="slide-btn left" onclick="slideLeft('bestsellers')">&#10094;</button>
+                <button class="slide-btn right" onclick="slideRight('bestsellers')">&#10095;</button>
+
+                <div class="cards" id="bestsellers-cards">
+                    <?php while ($row = $bestsellers->fetch_assoc()): ?>
+                        <div class="card-items">
+                            <div class="item">
+                                <img src="image/<?php echo $row['image']; ?>" alt="" width="200px" height="180px">
+                                <div class="lines">
+                                    <p class="text-center my-1" id="description-style"><?php echo $row['name']; ?></p>
+                                    <p class="text-center my-1 price" id="discount">Rs. <?php echo $row['price']; ?></p>
+                                    <p class="text-center my-1">Grab Now!</p>
+                                    <button class="addCart"
+                                        data-id="<?php echo $row['id']; ?>"
+                                        data-name="<?php echo $row['name']; ?>"
+                                        data-price="<?php echo $row['price']; ?>"
+                                        data-image="image/<?php echo $row['image']; ?>">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
             </div>
         </div>
 
@@ -473,6 +422,23 @@ include("connect_user.php"); ?>
     <footer class="flex-all-center" id="foot">
         <p> Copyright &copy; 2025 The Baking Break Inc. All rights reserved. </p>
     </footer>
+    <script>
+        function slideLeft(sectionId) {
+            const container = document.getElementById(sectionId + '-cards');
+            container.scrollBy({
+                left: -250,
+                behavior: 'smooth'
+            });
+        }
+
+        function slideRight(sectionId) {
+            const container = document.getElementById(sectionId + '-cards');
+            container.scrollBy({
+                left: 250,
+                behavior: 'smooth'
+            });
+        }
+    </script>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const dropdown = document.querySelector('.dropdown');

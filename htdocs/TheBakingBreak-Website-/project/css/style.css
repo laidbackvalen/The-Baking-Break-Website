@@ -556,6 +556,32 @@ hr {
         margin: 20px 0 0 0;
     }
 }
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(160, 225, 202, 0.8);
+    color: white;
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.slide-btn.left {
+    left: 10px;
+}
+
+.slide-btn.right {
+    right: 10px;
+}
+
+.slide-btn:hover {
+    background-color: rgba(82, 154, 130, 1);
+}
+
 
 
 
