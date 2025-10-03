@@ -1,0 +1,185 @@
+/* General body */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+header {
+    background: #fc2fcc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-a {
+    align-content: center;
+    margin-right: 70px;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header nav .nav-a a:hover {
+    border-bottom: 3px solid rgba(121, 6, 98, 1);
+    border-radius: 5px;
+}
+
+.admin-nav {
+    display: flex;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 140px;
+    padding: 0 25px;
+    transform: translate(10px);
+}
+
+/* Container */
+.container {
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Form styles */
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+form input[type="submit"] {
+    background: #529a82;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+form input[type="submit"]:hover {
+    background-color: #417a63;
+}
+
+/* Product list container */
+/* Product list container: flex wrap for even spacing */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    /* allow multiple rows */
+    gap: 20px;
+    /* spacing between cards */
+    margin-top: 40px;
+    justify-content: flex-start;
+    /* align cards to start */
+    padding-left: 70px;
+}
+
+/* Each product card */
+.product {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: white;
+    padding: 20px;
+    width: 280px;
+    /* fixed width for even alignment */
+    display: flex;
+    flex-direction: column;
+    /* stack image and text vertically */
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Product image */
+.product img {
+    width: 100%;
+    /* fill card width */
+    height: 180px;
+    /* fixed height */
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Product text/details */
+.product-details {
+    text-align: center;
+    /* center-align text */
+}
+
+.product h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #529a82;
+}
+
+.product p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Action links */
+a.action {
+    margin: 5px 10px 0 10px;
+    color: #fc2fcc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a.action:hover {
+    text-decoration: underline;
+    }
+
+/* Responsive: adjust for smaller screens */
+@media (max-width: 768px) {
+    .product-list {
+        justify-content: center;
+    }
+
+    .product {
+        width: 90%;
+        /* almost full width on mobile */
+    }
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    .product {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product img {
+        margin-bottom: 15px;
+    }
+}
