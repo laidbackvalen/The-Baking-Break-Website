@@ -1,169 +1,17 @@
-// Product data stored in JSON format (direct JSON for demonstration)
-const productsData = [
-  {
-    id: "1",
-    name: "Food Flavour Essence",
-    description:"A silicon mould perfect for making chocolate bars with 9 pieces.",
-    image: "image/cold, smooth & tasty. (83).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "2",
-    name: "Turning Table ",
-    description: "Another silicon mould with 9 pieces for chocolate lovers.",
-    image: "image/cold, smooth & tasty. (12).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "3",
-    name: "Nozzles",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (155).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "4",
-    name: "Baking Pan",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (156).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "5",
-    name: "Plastic Moulds",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (165).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "6",
-    name: "Bar Moulds",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (178).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "7",
-    name: "Fondant Cutters",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (18).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "8",
-    name: "Cartoon Moulds",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (190).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "9",
-    name: "Cupcake Mould",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (3).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "10",
-    name: "Baking Tool",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (40).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "11",
-    name: "Cake Topper",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (6).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "12",
-    name: "Doraemon Moulds",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (60).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "13",
-    name: "Love Themed Moulds",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (62).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "14",
-    name: "Birthday Toppers",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (72).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "15",
-    name: "Spray Color Bottle",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (79).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "16",
-    name: "Sprinkler",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/BHEJ DE/cold, smooth & tasty. (20).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "17",
-    name: "Knives",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (172).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "18",
-    name: "Measure cup",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/Untitled design (4).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "19",
-    name: "Curtain foil",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/Untitled design (13).png",
-    price:230,
-    discount: "Minimum 20% Off",
-  },
-  {
-    id: "20",
-    name: "Cake Tin",
-    description:"Perfect for chocolate bar lovers, create your own with this silicon mould.",
-    image: "image/cold, smooth & tasty. (54).png",
-    price: 230,
-    discount: "Minimum 20% Off",
-  },
-];
-
-// Global cart array
+let productsData = []; // initially empty
 let cart = [];
+
+// Fetch products dynamically from your database
+fetch("get-products.php")
+  .then((response) => response.json())
+  .then((data) => {
+    productsData = data;
+    initApp(); // start the app only after products are loaded
+  })
+  .catch((error) => {
+    console.error("Error fetching products:", error);
+  });
+
 
 // Select HTML elements
 let listProductHTML = document.querySelector(".listProduct");
@@ -318,6 +166,7 @@ const initApp = () => {
     addCartToHTML();
   }
 };
+
 
 initApp();
 

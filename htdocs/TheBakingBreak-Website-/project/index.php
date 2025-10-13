@@ -456,45 +456,49 @@ $bestsellers = $conn->query("SELECT * FROM products WHERE category='bestseller'"
     </script>
     <script src="js/user.js"></script>
     <script>
-        // Add event listeners for all Add to Cart buttons
-        document.querySelectorAll(".addCart").forEach(button => {
-            button.addEventListener("click", function() {
-                const id = this.dataset.id;
-                const name = this.dataset.name;
-                const price = parseFloat(this.dataset.price);
-                const image = this.dataset.image;
+    // Ensure we use the global cart array instead of redefining it
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Add event listeners for all Add to Cart buttons
+    document.querySelectorAll(".addCart").forEach(button => {
+        button.addEventListener("click", function() {
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const price = parseFloat(this.dataset.price);
+            const image = this.dataset.image;
 
-                const index = cart.findIndex(item => String(item.product_id) === String(id));
-                if (index >= 0) {
-                    cart[index].quantity += 1;
-                } else {
-                    cart.push({
-                        product_id: id,
-                        quantity: 1,
-                        name,
-                        price,
-                        image
-                    });
-                }
+            const index = cart.findIndex(item => String(item.product_id) === String(id));
+            if (index >= 0) {
+                cart[index].quantity += 1;
+            } else {
+                cart.push({
+                    product_id: id,
+                    quantity: 1,
+                    name,
+                    price,
+                    image
+                });
+            }
 
-                localStorage.setItem("cart", JSON.stringify(cart));
-                updateCartIcon();
-                // Optional: replace alert with a nicer notification
-                console.log(name + " added to cart!");
-            });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartIcon();
+            console.log(name + " added to cart!");
         });
+    });
 
-        const updateCartIcon = () => {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            let totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.querySelector(".icon-cart span").innerText = totalQuantity;
-        };
+    const updateCartIcon = () => {
+        // Ensure we are always using the global cart array
+        let totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".icon-cart span").innerText = totalQuantity;
+    };
 
-        // Call it on page load
+    // Call it on page load to sync the icon with stored cart
+    document.addEventListener("DOMContentLoaded", () => {
+        cart = JSON.parse(localStorage.getItem("cart")) || [];
         updateCartIcon();
-    </script>
+    });
+</script>
+
     <script src="js/slider.js"></script>
 
 </body>
