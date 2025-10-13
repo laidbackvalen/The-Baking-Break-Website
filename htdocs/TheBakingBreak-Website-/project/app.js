@@ -12,7 +12,6 @@ fetch("get-products.php")
     console.error("Error fetching products:", error);
   });
 
-
 // Select HTML elements
 let listProductHTML = document.querySelector(".listProduct");
 let listCartHTML = document.querySelector(".listCart");
@@ -167,19 +166,18 @@ const initApp = () => {
   }
 };
 
-
 initApp();
 
 document.addEventListener("DOMContentLoaded", () => {
-    const checkoutBtn = document.querySelector(".checkOut");
+  const checkoutBtn = document.querySelector(".checkOut");
 
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener("click", () => {
-            // Save cart data to localStorage
-            localStorage.setItem("cart", JSON.stringify(cart));
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+      // Save cart data to localStorage
+      localStorage.setItem("cart", JSON.stringify(cart));
 
-            // Redirect to checkout page
-            window.location.href = "checkout.html";
-        });
-    }
+      // Redirect to checkout page
+      window.location.href = "checkout.html";
+    });
+  }
 });

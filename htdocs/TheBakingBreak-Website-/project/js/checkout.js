@@ -1,62 +1,66 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Select HTML elements
-    const cartItemsContainer = document.getElementById("cartItems");
-    const totalQtyElem = document.getElementById("totalQty");
-    const totalPriceElem = document.getElementById("totalPrice");
-    const backToCartBtn = document.getElementById("backToCart");
-    const proceedPaymentBtn = document.getElementById("proceedPayment");
+  // Select HTML elements
+  const cartItemsContainer = document.getElementById("cartItems");
+  const totalQtyElem = document.getElementById("totalQty");
+  const totalPriceElem = document.getElementById("totalPrice");
+  const backToCartBtn = document.getElementById("backToCart");
+  const proceedPaymentBtn = document.getElementById("proceedPayment");
 
-    // Get cart data from localStorage
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  // Get cart data from localStorage
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    let totalQty = 0;
-    let totalPrice = 0;
+  let totalQty = 0;
+  let totalPrice = 0;
 
-    // ✅ Fetch product data before rendering cart
-    fetch("get-products.php")
-        .then(response => response.json())
-        .then(productsData => {
-            // Loop through cart items and render them
-            cart.forEach(item => {
-                // ✅ Use flexible matching (handles id or product_id, string or number)
-                const product = productsData.find(p => p.id == (item.product_id || item.id));
-                if (!product) return; // safety check
+  // ✅ Fetch product data before rendering cart
+  fetch("get-products.php")
+    .then((response) => response.json())
+    .then((productsData) => {
+      // Loop through cart items and render them
+      cart.forEach((item) => {
+        // ✅ Use flexible matching (handles id or product_id, string or number)
+        const product = productsData.find(
+          (p) => p.id == (item.product_id || item.id)
+        );
+        if (!product) return; // safety check
 
-                totalQty += item.quantity;
-                totalPrice += product.price * item.quantity;
+        totalQty += item.quantity;
+        totalPrice += product.price * item.quantity;
 
-                const itemDiv = document.createElement("div");
-                itemDiv.classList.add("cart-item");
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("cart-item");
 
-                itemDiv.innerHTML = `
+        itemDiv.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <div class="cart-item-details">
                         <h4>${product.name}</h4>
                         <p>Price: Rs ${product.price}</p>
                         <p>Quantity: ${item.quantity}</p>
                     </div>
-                    <div class="item-total">Rs ${(product.price * item.quantity).toFixed(2)}</div>
+                    <div class="item-total">Rs ${(
+                      product.price * item.quantity
+                    ).toFixed(2)}</div>
                 `;
 
-                cartItemsContainer.appendChild(itemDiv);
-            });
+        cartItemsContainer.appendChild(itemDiv);
+      });
 
-            // Update totals
-            totalQtyElem.textContent = totalQty;
-            totalPriceElem.textContent = totalPrice.toFixed(2);
-        })
-        .catch(error => {
-            console.error("Error fetching products:", error);
-        });
-
-    // Back to cart button
-    backToCartBtn.addEventListener("click", () => {
-        window.location.href = "cart.html";
+      // Update totals
+      totalQtyElem.textContent = totalQty;
+      totalPriceElem.textContent = totalPrice.toFixed(2);
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
     });
 
-    // Proceed to payment button
-    proceedPaymentBtn.addEventListener("click", () => {
-        alert("Redirecting to payment page...");
-        // Here you can redirect to a payment page
-    });
+  // Back to cart button
+  backToCartBtn.addEventListener("click", () => {
+    window.location.href = "cart.html";
+  });
+
+  // Proceed to payment button
+  proceedPaymentBtn.addEventListener("click", () => {
+    alert("Redirecting to payment page...");
+    // Here you can redirect to a payment page
+  });
 });

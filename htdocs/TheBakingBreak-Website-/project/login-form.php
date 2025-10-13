@@ -3,31 +3,32 @@ session_start();
 include 'connect_user.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
-    $result = $conn->query($sql);
+  $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+  $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
 
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['role'] = $row['role'];
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['role'] = $row['role'];
 
-        // Redirect based on role
-        if ($row['role'] == 'admin') {
-            header("Location: admin/admin-dashboard.php");
-        } else {
-            header("Location: index.php");
-        }
+    // Redirect based on role
+    if ($row['role'] == 'admin') {
+      header("Location: admin/admin-dashboard.php");
     } else {
-        echo "Invalid login";
+      header("Location: index.php");
     }
+  } else {
+    echo "Invalid login";
+  }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   </style>
 </head>
+
 <body>
   <!-- SIGN UP FORM -->
   <div class="container" id="signup">
@@ -165,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </form>
 
       <div class="links">
-        <p>Already have an account? 
+        <p>Already have an account?
           <button onclick="showSignIn()">Sign In</button>
         </p>
       </div>
@@ -194,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </form>
 
       <div class="links">
-        <p>Don't have an account? 
+        <p>Don't have an account?
           <button onclick="showSignUp()">Sign Up</button>
         </p>
       </div>
@@ -229,4 +231,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
   </script>
 </body>
+
 </html>
